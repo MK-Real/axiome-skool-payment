@@ -113,6 +113,17 @@ section{padding:64px 0}
 .ben li::before{content:"\2713";color:var(--blue);font-weight:800;flex-shrink:0}
 .ben p{font-size:.9rem;color:var(--muted)}
 
+.countdown{background:#fff5f5;border:2px solid #e2342c;border-radius:18px;padding:18px 22px;margin:30px auto 0;max-width:480px;text-align:center;box-shadow:0 10px 34px rgba(226,52,44,.18)}
+.countdown .cd-label{color:#c81f17;font-weight:800;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.cd-timer{display:flex;justify-content:center;gap:9px}
+.cd-box{background:#e2342c;color:#fff;border-radius:11px;padding:9px 5px;min-width:60px}
+.cd-box .n{font-family:'JetBrains Mono',monospace;font-size:1.7rem;font-weight:800;line-height:1}
+.cd-box .u{font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;margin-top:5px;opacity:.9}
+.cd-sep{align-self:center;font-size:1.4rem;font-weight:800;color:#e2342c}
+.countdown.expired .cd-timer{display:none}
+.cd-expired-msg{display:none;color:#c81f17;font-weight:800;font-size:.95rem}
+.countdown.expired .cd-expired-msg{display:block}
+@media(max-width:560px){.cd-box{min-width:50px;padding:8px 3px}.cd-box .n{font-size:1.35rem}.cd-sep{font-size:1.1rem}}
 footer{border-top:1px solid var(--line);padding:40px 0;text-align:center;color:#9aa4b5;font-size:.8rem;line-height:1.7}
 footer .fl{font-weight:800;letter-spacing:.16em;color:var(--ink);margin-bottom:8px}
 footer a{color:var(--blue);text-decoration:none}
@@ -146,8 +157,21 @@ footer a{color:var(--blue);text-decoration:none}
         <h1>Bezahle weltweit mit <span class="grad">AXIOME PAY</span></h1>
         <p>Die Krypto-Karte, die Guthaben in echtes Bezahlen verwandelt &ndash; online, offline und an jedem Terminal. AXIOME SKOOL zeigt dir, wie du sie und das gesamte Axiome &Ouml;kosystem optimal nutzt.</p>
         <div class="cta-row">
-          <a href="/krypto.html" class="btn btn-primary">Jetzt starten &ndash; 38% Rabatt &rarr;</a>
+          <a href="/krypto.html" class="btn btn-primary">Jetzt starten &ndash; 44% Rabatt &rarr;</a>
           <a href="#pay" class="btn btn-ghost">Wie AXIOME PAY funktioniert</a>
+        </div>
+        <div class="countdown" id="countdown-hero" style="margin-left:0;margin-right:auto">
+          <div class="cd-label">&#9203; Nur $44 &mdash; Angebot endet in</div>
+          <div class="cd-timer">
+            <div class="cd-box"><div class="n cd-d">00</div><div class="u">Tage</div></div>
+            <div class="cd-sep">:</div>
+            <div class="cd-box"><div class="n cd-h">00</div><div class="u">Std</div></div>
+            <div class="cd-sep">:</div>
+            <div class="cd-box"><div class="n cd-m">00</div><div class="u">Min</div></div>
+            <div class="cd-sep">:</div>
+            <div class="cd-box"><div class="n cd-s">00</div><div class="u">Sek</div></div>
+          </div>
+          <div class="cd-expired-msg">&#9888; Angebot abgelaufen &ndash; Preis angepasst.</div>
         </div>
       </div>
       <div class="card-visual">
@@ -323,8 +347,21 @@ footer a{color:var(--blue);text-decoration:none}
       </div>
       <div class="price-tag">
         <span class="old">$79</span>
-        <span class="new">$49</span>
-        <span class="save">38% Rabatt</span>
+        <span class="new">$44</span>
+        <span class="save">44% Rabatt</span>
+      </div>
+      <div class="countdown" id="countdown-skool" style="margin-top:0;margin-bottom:28px">
+        <div class="cd-label">&#9203; Angebot endet in &mdash; danach steigt der Preis</div>
+        <div class="cd-timer">
+          <div class="cd-box"><div class="n cd-d">00</div><div class="u">Tage</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-box"><div class="n cd-h">00</div><div class="u">Std</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-box"><div class="n cd-m">00</div><div class="u">Min</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-box"><div class="n cd-s">00</div><div class="u">Sek</div></div>
+        </div>
+        <div class="cd-expired-msg">&#9888; Das Angebot ist abgelaufen &ndash; der Preis wurde angepasst.</div>
       </div>
       <div class="cta-row" style="justify-content:center">
         <a href="/krypto.html" class="btn btn-primary">Zugang mit Krypto kaufen &rarr;</a>
@@ -342,5 +379,23 @@ footer a{color:var(--blue);text-decoration:none}
   </div>
 </footer>
 
+<script>
+(function(){
+  var deadline=new Date("2026-05-31T23:59:59+02:00").getTime();
+  var boxes=[document.getElementById('countdown-hero'),document.getElementById('countdown-skool')];
+  function pad(n){return n<10?'0'+n:''+n;}
+  function set(cls,val,box){var e=box.querySelector('.'+cls);if(e)e.textContent=val;}
+  function tick(){
+    var diff=deadline-Date.now();
+    if(diff<=0){boxes.forEach(function(b){if(b)b.classList.add('expired');});clearInterval(timer);return;}
+    var days=pad(Math.floor(diff/86400000));
+    var hrs=pad(Math.floor(diff%86400000/3600000));
+    var min=pad(Math.floor(diff%3600000/60000));
+    var sec=pad(Math.floor(diff%60000/1000));
+    boxes.forEach(function(b){if(!b)return;set('cd-d',days,b);set('cd-h',hrs,b);set('cd-m',min,b);set('cd-s',sec,b);});
+  }
+  tick();var timer=setInterval(tick,1000);
+})();
+</script>
 </body>
 </html>

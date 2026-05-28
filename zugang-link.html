@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zugang-Link &ndash; AXIOME SKOOL</title>
+<meta http-equiv="refresh" content="0; url=https://t.me/axiome_pay_bot/axiomepayapp?startapp=kryptoskool">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1762ff;--blue-dark:#0b3fb3;--ink:#0c1322;--muted:#5b6577}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:var(--ink);
+  min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;
+  background-image:radial-gradient(circle at 50% 0%, rgba(23,98,255,.10), transparent 55%);
+}
+.box{max-width:440px}
+.spinner{
+  width:46px;height:46px;border:4px solid rgba(23,98,255,.2);border-top-color:var(--blue);
+  border-radius:50%;margin:0 auto 26px;animation:spin .8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.brand{letter-spacing:.2em;font-size:.74rem;color:var(--blue);font-weight:800;text-transform:uppercase;margin-bottom:14px}
+h1{font-size:1.5rem;font-weight:800;margin-bottom:10px}
+p{color:var(--muted);font-size:.98rem;margin-bottom:26px}
+a.btn{
+  display:inline-flex;align-items:center;gap:10px;background:var(--blue);color:#fff;text-decoration:none;
+  font-weight:800;font-size:1rem;padding:15px 28px;border-radius:14px;transition:.2s;
+  box-shadow:0 10px 30px rgba(23,98,255,.3);
+}
+a.btn:hover{background:var(--blue-dark);transform:translateY(-2px)}
+.small{margin-top:18px;font-size:.8rem;color:#9aa4b5}
+.small a{color:var(--blue);text-decoration:none}
+</style>
+</head>
+<body>
+  <div class="box">
+    <div class="brand">AXIOME SKOOL</div>
+    <div class="spinner"></div>
+    <h1>Du wirst weitergeleitet&hellip;</h1>
+    <p>Wir &ouml;ffnen gerade die Axiome Pay App in Telegram. Falls nichts passiert, tippe einfach auf den Button:</p>
+    <a class="btn" href="https://t.me/axiome_pay_bot/axiomepayapp?startapp=kryptoskool">In Telegram &ouml;ffnen &rarr;</a>
+    <div class="small"><a href="/">&larr; Zur&uuml;ck zur Startseite</a></div>
+  </div>
+  <script>
+    window.location.replace("https://t.me/axiome_pay_bot/axiomepayapp?startapp=kryptoskool");
+  </script>
+</body>
+</html>

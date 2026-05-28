@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>In Krypto bezahlen – Axiom School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#1762ff;
+  --blue-dark:#0b3fb3;
+  --blue-soft:#e8f0ff;
+  --blue-tint:#f4f8ff;
+  --bg:#ffffff;
+  --ink:#0c1322;
+  --muted:#5b6577;
+  --line:#e3e9f2;
+  --line-blue:rgba(23,98,255,.25);
+  --green:#16a34a;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  min-height:100vh;
+  background-image:
+    radial-gradient(circle at 15% -5%, rgba(23,98,255,.10), transparent 40%),
+    radial-gradient(circle at 95% 105%, rgba(23,98,255,.07), transparent 42%);
+  display:flex;justify-content:center;
+  padding:48px 20px 80px;
+}
+.wrap{width:100%;max-width:680px}
+
+.brand{
+  text-align:center;letter-spacing:.34em;font-size:.72rem;color:var(--blue);
+  text-transform:uppercase;font-weight:800;margin-bottom:14px;
+}
+h1{
+  text-align:center;font-size:2.3rem;font-weight:800;line-height:1.15;
+  margin-bottom:10px;color:var(--ink);letter-spacing:-.02em;
+}
+.sub{text-align:center;color:var(--muted);font-size:1rem;margin-bottom:38px}
+
+.prices{display:flex;gap:16px;margin-bottom:14px}
+.price{
+  flex:1;background:#fff;border:1px solid var(--line);border-radius:18px;
+  padding:22px 20px;text-align:center;position:relative;
+  box-shadow:0 6px 24px rgba(12,19,34,.04);
+}
+.price .label{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.price .amount{font-size:1.9rem;font-weight:800;font-family:'JetBrains Mono',monospace}
+.price.regular .amount{color:var(--muted);text-decoration:line-through;text-decoration-color:#c3ccd9}
+.price.crypto{border-color:var(--line-blue);box-shadow:0 8px 30px rgba(23,98,255,.14)}
+.price.crypto .amount{color:var(--blue)}
+.badge{
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:var(--blue);color:#fff;font-weight:800;font-size:.72rem;
+  padding:5px 14px;border-radius:999px;letter-spacing:.04em;white-space:nowrap;
+}
+.discount-note{text-align:center;color:var(--blue-dark);font-weight:700;font-size:.95rem;margin-bottom:38px}
+
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:22px;
+  padding:30px 28px;margin-bottom:22px;box-shadow:0 10px 40px rgba(12,19,34,.05);
+}
+.card h2{font-size:1.15rem;font-weight:800;margin-bottom:22px;display:flex;align-items:center;gap:10px}
+.step{display:flex;gap:16px;margin-bottom:22px}
+.step:last-child{margin-bottom:0}
+.num{
+  flex-shrink:0;width:30px;height:30px;border-radius:50%;
+  background:var(--blue-soft);color:var(--blue);font-weight:800;font-size:.9rem;
+  display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;
+}
+.step .bd{font-size:.97rem;line-height:1.55;color:#2c3548}
+.step .bd b{color:var(--ink)}
+
+.wallet{background:var(--blue-tint);border:1px dashed var(--line-blue);border-radius:14px;padding:16px 18px;margin-top:12px}
+.wallet .net{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;font-weight:800}
+.wallet-row{display:flex;align-items:center;gap:12px}
+.addr{flex:1;font-family:'JetBrains Mono',monospace;font-size:.92rem;color:var(--ink);word-break:break-all;line-height:1.4}
+.copy{
+  flex-shrink:0;background:var(--blue);color:#fff;border:none;font-weight:700;
+  font-size:.82rem;padding:9px 16px;border-radius:10px;cursor:pointer;
+  font-family:'Plus Jakarta Sans',sans-serif;transition:.18s;
+}
+.copy:hover{background:var(--blue-dark)}
+.copy.done{background:var(--green)}
+.coins{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.coin{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px;color:var(--muted)}
+.coin b{color:var(--blue)}
+
+.form-card{background:linear-gradient(180deg,var(--blue-tint),#fff);border:1px solid var(--line-blue)}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:.82rem;font-weight:700;margin-bottom:7px;color:var(--ink)}
+.field input{
+  width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:12px;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:.95rem;color:var(--ink);
+  background:#fff;transition:.15s;
+}
+.field input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(23,98,255,.15)}
+.field input::placeholder{color:#aab3c2}
+.submit{
+  width:100%;background:var(--blue);color:#fff;border:none;border-radius:12px;
+  padding:15px;font-size:1rem;font-weight:800;cursor:pointer;
+  font-family:'Plus Jakarta Sans',sans-serif;transition:.18s;margin-top:6px;
+}
+.submit:hover{background:var(--blue-dark)}
+.submit:disabled{opacity:.6;cursor:not-allowed}
+.form-msg{margin-top:14px;text-align:center;font-size:.92rem;font-weight:600;display:none}
+.form-msg.ok{display:block;color:var(--green)}
+.form-msg.err{display:block;color:#dc2626}
+
+.note{font-size:.85rem;color:var(--muted);line-height:1.55;text-align:center;border-top:1px solid var(--line);padding-top:22px;margin-top:6px}
+.note .warn{color:var(--blue-dark);font-weight:700}
+footer{text-align:center;color:#9aa4b5;font-size:.72rem;margin-top:34px;line-height:1.6}
+footer a{color:var(--blue);text-decoration:none}
+
+@media(max-width:560px){
+  h1{font-size:1.75rem}
+  .prices{flex-direction:column}
+  .wallet-row{flex-direction:column;align-items:stretch}
+  .copy{width:100%}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand">AXIOME SKOOL</div>
+  <h1>Mit Krypto bezahlen &amp; sparen</h1>
+  <p class="sub">Bezahle deinen Zugang direkt in Krypto und umgehe die Standard-Zahlung auf Skool.com</p>
+
+  <div class="prices">
+    <div class="price regular">
+      <div class="label">Regulärer Preis</div>
+      <div class="amount">$79</div>
+    </div>
+    <div class="price crypto">
+      <span class="badge">38% Rabatt</span>
+      <div class="label">Krypto-Preis</div>
+      <div class="amount">$49</div>
+    </div>
+  </div>
+  <p class="discount-note">Du sparst $30 &mdash; das sind <b>37,97 %</b> Rabatt &#128293;</p>
+
+  <div class="card">
+    <h2>&#9889; So funktioniert's</h2>
+
+    <div class="step">
+      <div class="num">1</div>
+      <div class="bd">
+        Sende <b>$49 in USDT oder USDC</b> auf der <b>BNB Chain (BEP-20)</b> an folgende Wallet-Adresse:
+        <div class="wallet">
+          <div class="net">USDT / USDC &middot; BNB Chain (BEP-20)</div>
+          <div class="wallet-row">
+            <div class="addr" id="addr">0xc9E4720b55BFf7322bAC6E08bCE1FCae5e970A05</div>
+            <button class="copy" id="copyBtn" type="button">Kopieren</button>
+          </div>
+          <div class="coins">
+            <span class="coin"><b>USDT</b> &middot; BEP-20</span>
+            <span class="coin"><b>USDC</b> &middot; BEP-20</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="num">2</div>
+      <div class="bd">Notiere dir nach der Zahlung deine <b>Transaktions-ID (TX-Hash)</b> &mdash; damit wir den Eingang zuordnen k&ouml;nnen.</div>
+    </div>
+
+    <div class="step">
+      <div class="num">3</div>
+      <div class="bd">Halte die <b>E-Mail-Adresse</b> bereit, mit der du bei <b>Skool.com</b> registriert bist. &Uuml;ber diese E-Mail erh&auml;ltst du deinen Zugang zur Community.</div>
+    </div>
+
+    <div class="step">
+      <div class="num">4</div>
+      <div class="bd">Trage <b>TX-Hash + Skool-E-Mail</b> unten ins Formular ein und sende es ab.</div>
+    </div>
+  </div>
+
+  <div class="card form-card">
+    <h2>&#128228; Zahlung melden</h2>
+    <form id="payForm">
+      <input type="hidden" name="access_key" value="c642d79f-c1e0-4a1e-9a01-4c27d6b374d4">
+      <input type="hidden" name="subject" value="Neue Krypto-Zahlung - AXIOME SKOOL">
+      <input type="hidden" name="from_name" value="AXIOME SKOOL Krypto-Seite">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+
+      <div class="field">
+        <label for="txhash">Transaktions-ID (TX-Hash)</label>
+        <input id="txhash" name="TX-Hash" type="text" placeholder="0x..." required>
+      </div>
+      <div class="field">
+        <label for="email">Deine Skool.com E-Mail-Adresse</label>
+        <input id="email" name="Skool-Email" type="email" placeholder="name@email.com" required>
+      </div>
+      <div class="field">
+        <label for="coin">Bezahlt mit (USDT oder USDC)</label>
+        <input id="coin" name="Coin" type="text" placeholder="z. B. USDT" required>
+      </div>
+
+      <button class="submit" id="submitBtn" type="submit">Zahlung absenden</button>
+      <div class="form-msg" id="formMsg"></div>
+    </form>
+  </div>
+
+  <p class="note">
+    <span class="warn">&#9888; Wichtig:</span> Sende ausschlie&szlig;lich <b>USDT</b> oder <b>USDC</b> auf der <b>BNB Chain (BEP-20)</b>.
+    Zahlungen &uuml;ber andere Netzwerke oder Coins k&ouml;nnen nicht erstattet werden.
+    Der Zugang wird nach Best&auml;tigung der Transaktion manuell freigeschaltet.
+  </p>
+
+  <footer>
+    AXIOME SKOOL<br>
+    Unabh&auml;ngiges Bildungsangebot &ndash; nicht offiziell unterst&uuml;tzt, autorisiert oder genehmigt.
+  </footer>
+
+</div>
+
+<script>
+var copyBtn=document.getElementById('copyBtn');
+copyBtn.addEventListener('click',function(){
+  var text=document.getElementById('addr').textContent.trim();
+  navigator.clipboard.writeText(text).then(function(){
+    copyBtn.textContent='Kopiert \u2713';copyBtn.classList.add('done');
+    setTimeout(function(){copyBtn.textContent='Kopieren';copyBtn.classList.remove('done');},1800);
+  });
+});
+
+var form=document.getElementById('payForm');
+var msg=document.getElementById('formMsg');
+var btn=document.getElementById('submitBtn');
+form.addEventListener('submit',async function(e){
+  e.preventDefault();
+  btn.disabled=true;btn.textContent='Wird gesendet...';
+  msg.className='form-msg';msg.textContent='';
+  try{
+    var data=new FormData(form);
+    var res=await fetch('https://api.web3forms.com/submit',{
+      method:'POST',
+      headers:{'Accept':'application/json'},
+      body:data
+    });
+    var json=await res.json();
+    if(json.success){
+      form.reset();
+      msg.className='form-msg ok';
+      msg.textContent='\u2705 Danke! Deine Zahlung wurde gemeldet. Dein Zugang wird nach Best\u00e4tigung freigeschaltet.';
+    }else{
+      msg.className='form-msg err';
+      msg.textContent='\u274C Etwas ist schiefgelaufen. Bitte versuche es erneut.';
+    }
+  }catch(err){
+    msg.className='form-msg err';
+    msg.textContent='\u274C Verbindungsfehler. Bitte versuche es erneut.';
+  }finally{
+    btn.disabled=false;btn.textContent='Zahlung absenden';
+  }
+});
+</script>
+</body>
+</html>

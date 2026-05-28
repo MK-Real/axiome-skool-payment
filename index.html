@@ -3,265 +3,344 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>In Krypto bezahlen – Axiom School</title>
+<title>AXIOME SKOOL &ndash; AXIOME PAY &amp; das Axiome &Ouml;kosystem</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --blue:#1762ff;
-  --blue-dark:#0b3fb3;
-  --blue-soft:#e8f0ff;
-  --blue-tint:#f4f8ff;
-  --bg:#ffffff;
-  --ink:#0c1322;
-  --muted:#5b6577;
-  --line:#e3e9f2;
-  --line-blue:rgba(23,98,255,.25);
-  --green:#16a34a;
+  --blue:#1762ff;--blue-dark:#0b3fb3;--blue-soft:#e8f0ff;--blue-tint:#f4f8ff;
+  --bg:#ffffff;--ink:#0c1322;--muted:#5b6577;--line:#e3e9f2;--line-blue:rgba(23,98,255,.25);--green:#16a34a;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:'Plus Jakarta Sans',sans-serif;
-  background:var(--bg);
-  color:var(--ink);
-  min-height:100vh;
-  background-image:
-    radial-gradient(circle at 15% -5%, rgba(23,98,255,.10), transparent 40%),
-    radial-gradient(circle at 95% 105%, rgba(23,98,255,.07), transparent 42%);
-  display:flex;justify-content:center;
-  padding:48px 20px 80px;
-}
-.wrap{width:100%;max-width:680px}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+.container{max-width:1080px;margin:0 auto;padding:0 22px}
 
-.brand{
-  text-align:center;letter-spacing:.34em;font-size:.72rem;color:var(--blue);
-  text-transform:uppercase;font-weight:800;margin-bottom:14px;
-}
-h1{
-  text-align:center;font-size:2.3rem;font-weight:800;line-height:1.15;
-  margin-bottom:10px;color:var(--ink);letter-spacing:-.02em;
-}
-.sub{text-align:center;color:var(--muted);font-size:1rem;margin-bottom:38px}
+/* NAV */
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1080px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;letter-spacing:.18em;font-size:.92rem;color:var(--ink)}
+.logo span{color:var(--blue)}
+.nav-cta{background:var(--blue);color:#fff;text-decoration:none;font-weight:700;font-size:.82rem;padding:9px 18px;border-radius:10px;transition:.18s}
+.nav-cta:hover{background:var(--blue-dark)}
 
-.prices{display:flex;gap:16px;margin-bottom:14px}
-.price{
-  flex:1;background:#fff;border:1px solid var(--line);border-radius:18px;
-  padding:22px 20px;text-align:center;position:relative;
-  box-shadow:0 6px 24px rgba(12,19,34,.04);
-}
-.price .label{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
-.price .amount{font-size:1.9rem;font-weight:800;font-family:'JetBrains Mono',monospace}
-.price.regular .amount{color:var(--muted);text-decoration:line-through;text-decoration-color:#c3ccd9}
-.price.crypto{border-color:var(--line-blue);box-shadow:0 8px 30px rgba(23,98,255,.14)}
-.price.crypto .amount{color:var(--blue)}
-.badge{
-  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
-  background:var(--blue);color:#fff;font-weight:800;font-size:.72rem;
-  padding:5px 14px;border-radius:999px;letter-spacing:.04em;white-space:nowrap;
-}
-.discount-note{text-align:center;color:var(--blue-dark);font-weight:700;font-size:.95rem;margin-bottom:38px}
+/* HERO - PAY-centric */
+.hero{position:relative;padding:80px 0 60px;background-image:radial-gradient(circle at 15% 0%, rgba(23,98,255,.14), transparent 44%),radial-gradient(circle at 92% 20%, rgba(23,98,255,.10), transparent 42%)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.eyebrow{display:inline-block;background:var(--blue-soft);color:var(--blue);font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:7px 16px;border-radius:999px;margin-bottom:22px}
+.hero h1{font-size:3rem;font-weight:800;letter-spacing:-.03em;line-height:1.07;margin-bottom:20px}
+.hero h1 .grad{background:linear-gradient(120deg,var(--blue),#5b9bff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:1.14rem;color:var(--muted);margin-bottom:32px;max-width:520px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.btn{text-decoration:none;font-weight:800;font-size:1rem;padding:16px 28px;border-radius:14px;transition:.2s;display:inline-flex;align-items:center;gap:10px}
+.btn-primary{background:var(--blue);color:#fff;box-shadow:0 10px 30px rgba(23,98,255,.3)}
+.btn-primary:hover{background:var(--blue-dark);transform:translateY(-2px)}
+.btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
 
-.card{
-  background:#fff;border:1px solid var(--line);border-radius:22px;
-  padding:30px 28px;margin-bottom:22px;box-shadow:0 10px 40px rgba(12,19,34,.05);
+/* CARD VISUAL */
+.card-visual{perspective:1200px;display:flex;justify-content:center}
+.credit-card{
+  width:340px;height:214px;border-radius:22px;padding:26px;color:#fff;position:relative;
+  background:linear-gradient(135deg,#0c1322 0%,#13245a 55%,#1762ff 130%);
+  box-shadow:0 30px 60px rgba(12,19,34,.35);transform:rotateY(-14deg) rotateX(6deg);
+  transition:.4s;overflow:hidden;
 }
-.card h2{font-size:1.15rem;font-weight:800;margin-bottom:22px;display:flex;align-items:center;gap:10px}
-.step{display:flex;gap:16px;margin-bottom:22px}
-.step:last-child{margin-bottom:0}
-.num{
-  flex-shrink:0;width:30px;height:30px;border-radius:50%;
-  background:var(--blue-soft);color:var(--blue);font-weight:800;font-size:.9rem;
-  display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;
-}
-.step .bd{font-size:.97rem;line-height:1.55;color:#2c3548}
-.step .bd b{color:var(--ink)}
+.credit-card:hover{transform:rotateY(-6deg) rotateX(2deg)}
+.credit-card::after{content:"";position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(255,255,255,.18),transparent 70%)}
+.cc-top{display:flex;justify-content:space-between;align-items:flex-start}
+.cc-brand{font-weight:800;letter-spacing:.12em;font-size:.82rem}
+.cc-chip{width:42px;height:32px;border-radius:7px;background:linear-gradient(135deg,#f2c14e,#caa23a);margin-top:30px}
+.cc-num{font-family:'JetBrains Mono',monospace;font-size:1.12rem;letter-spacing:.12em;margin-top:26px}
+.cc-bot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:18px;font-size:.72rem;color:#cdd8f0}
+.cc-bot .net{font-weight:800;font-size:1rem;color:#fff;font-style:italic}
 
-.wallet{background:var(--blue-tint);border:1px dashed var(--line-blue);border-radius:14px;padding:16px 18px;margin-top:12px}
-.wallet .net{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;font-weight:800}
-.wallet-row{display:flex;align-items:center;gap:12px}
-.addr{flex:1;font-family:'JetBrains Mono',monospace;font-size:.92rem;color:var(--ink);word-break:break-all;line-height:1.4}
-.copy{
-  flex-shrink:0;background:var(--blue);color:#fff;border:none;font-weight:700;
-  font-size:.82rem;padding:9px 16px;border-radius:10px;cursor:pointer;
-  font-family:'Plus Jakarta Sans',sans-serif;transition:.18s;
-}
-.copy:hover{background:var(--blue-dark)}
-.copy.done{background:var(--green)}
-.coins{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
-.coin{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px;color:var(--muted)}
-.coin b{color:var(--blue)}
+/* SECTION */
+section{padding:64px 0}
+.sec-head{text-align:center;max-width:660px;margin:0 auto 46px}
+.sec-head .tag{color:var(--blue);font-weight:800;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}
+.sec-head h2{font-size:2.15rem;font-weight:800;letter-spacing:-.02em;margin-bottom:14px}
+.sec-head p{color:var(--muted);font-size:1.05rem}
 
-.form-card{background:linear-gradient(180deg,var(--blue-tint),#fff);border:1px solid var(--line-blue)}
-.field{margin-bottom:16px}
-.field label{display:block;font-size:.82rem;font-weight:700;margin-bottom:7px;color:var(--ink)}
-.field input{
-  width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:12px;
-  font-family:'Plus Jakarta Sans',sans-serif;font-size:.95rem;color:var(--ink);
-  background:#fff;transition:.15s;
-}
-.field input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(23,98,255,.15)}
-.field input::placeholder{color:#aab3c2}
-.submit{
-  width:100%;background:var(--blue);color:#fff;border:none;border-radius:12px;
-  padding:15px;font-size:1rem;font-weight:800;cursor:pointer;
-  font-family:'Plus Jakarta Sans',sans-serif;transition:.18s;margin-top:6px;
-}
-.submit:hover{background:var(--blue-dark)}
-.submit:disabled{opacity:.6;cursor:not-allowed}
-.form-msg{margin-top:14px;text-align:center;font-size:.92rem;font-weight:600;display:none}
-.form-msg.ok{display:block;color:var(--green)}
-.form-msg.err{display:block;color:#dc2626}
+/* PAY FEATURE GRID */
+.pay-features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.pf{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px;transition:.2s;box-shadow:0 6px 24px rgba(12,19,34,.04)}
+.pf:hover{transform:translateY(-4px);border-color:var(--line-blue);box-shadow:0 14px 40px rgba(23,98,255,.12)}
+.pf .ic{font-size:1.7rem;margin-bottom:14px}
+.pf h3{font-size:1.08rem;font-weight:800;margin-bottom:8px}
+.pf p{color:var(--muted);font-size:.92rem}
 
-.note{font-size:.85rem;color:var(--muted);line-height:1.55;text-align:center;border-top:1px solid var(--line);padding-top:22px;margin-top:6px}
-.note .warn{color:var(--blue-dark);font-weight:700}
-footer{text-align:center;color:#9aa4b5;font-size:.72rem;margin-top:34px;line-height:1.6}
+/* PAY BANNER */
+.pay-banner{background:linear-gradient(135deg,#0c1322,#13245a);color:#fff;border-radius:28px;padding:54px 48px;position:relative;overflow:hidden;text-align:center}
+.pay-banner::before{content:"";position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:420px;height:420px;background:radial-gradient(circle,rgba(23,98,255,.4),transparent 65%)}
+.pay-banner .inner{position:relative;z-index:2;max-width:640px;margin:0 auto}
+.pay-banner h2{font-size:2.1rem;font-weight:800;letter-spacing:-.02em;margin-bottom:16px}
+.pay-banner p{color:#c5cfe6;font-size:1.08rem;margin-bottom:28px}
+.stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:34px}
+.stat .n{font-size:1.9rem;font-weight:800;color:#fff;font-family:'JetBrains Mono',monospace}
+.stat .l{font-size:.78rem;color:#9fb3da;letter-spacing:.04em;margin-top:4px}
+
+/* ECOSYSTEM STRIP (supporting, smaller) */
+.eco-strip{background:var(--blue-tint);border-radius:24px;padding:42px 36px}
+.eco-strip .lead{text-align:center;color:var(--muted);max-width:560px;margin:0 auto 28px;font-size:.98rem}
+.eco-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.eco-item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 16px;text-align:center}
+.eco-item .ei{font-size:1.3rem;margin-bottom:8px}
+.eco-item h4{font-size:.92rem;font-weight:800;margin-bottom:4px}
+.eco-item p{font-size:.78rem;color:var(--muted);line-height:1.45}
+
+/* SKOOL CTA */
+.skool{background:#fff;border:1px solid var(--line-blue);border-radius:28px;padding:54px 48px;text-align:center;box-shadow:0 16px 50px rgba(23,98,255,.08)}
+.skool h2{font-size:2rem;font-weight:800;margin-bottom:14px;letter-spacing:-.02em}
+.skool p{color:var(--muted);font-size:1.05rem;max-width:560px;margin:0 auto 28px}
+.price-tag{display:inline-flex;align-items:center;gap:14px;margin-bottom:28px}
+.price-tag .old{font-size:1.4rem;color:var(--muted);text-decoration:line-through;font-family:'JetBrains Mono',monospace}
+.price-tag .new{font-size:2.2rem;font-weight:800;color:var(--blue);font-family:'JetBrains Mono',monospace}
+.price-tag .save{background:var(--blue);color:#fff;font-weight:800;font-size:.78rem;padding:5px 12px;border-radius:999px}
+
+/* EXCLUSIVE BENEFITS */
+.benefits{background:var(--blue-tint);border-radius:28px;padding:50px 44px}
+.ben-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:8px}
+.ben{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;position:relative;transition:.2s}
+.ben:hover{border-color:var(--line-blue);box-shadow:0 12px 34px rgba(23,98,255,.1);transform:translateY(-3px)}
+.ben .bt{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ben .bi{font-size:1.4rem}
+.ben h3{font-size:1.05rem;font-weight:800}
+.ben .free{position:absolute;top:18px;right:18px;background:var(--blue);color:#fff;font-size:.62rem;font-weight:800;letter-spacing:.06em;padding:4px 9px;border-radius:999px}
+.ben ul{list-style:none;margin-top:6px}
+.ben li{display:flex;gap:9px;align-items:flex-start;font-size:.9rem;color:#2c3548;margin-bottom:6px}
+.ben li::before{content:"\2713";color:var(--blue);font-weight:800;flex-shrink:0}
+.ben p{font-size:.9rem;color:var(--muted)}
+
+footer{border-top:1px solid var(--line);padding:40px 0;text-align:center;color:#9aa4b5;font-size:.8rem;line-height:1.7}
+footer .fl{font-weight:800;letter-spacing:.16em;color:var(--ink);margin-bottom:8px}
 footer a{color:var(--blue);text-decoration:none}
 
-@media(max-width:560px){
-  h1{font-size:1.75rem}
-  .prices{flex-direction:column}
-  .wallet-row{flex-direction:column;align-items:stretch}
-  .copy{width:100%}
+@media(max-width:760px){
+  .hero-grid{grid-template-columns:1fr;text-align:center}
+  .hero p{margin-left:auto;margin-right:auto}
+  .cta-row{justify-content:center}
+  .card-visual{margin-top:30px}
+  .hero h1{font-size:2.2rem}
+  section{padding:48px 0}
+  .sec-head h2{font-size:1.7rem}
+  .pay-banner,.skool,.eco-strip{padding:36px 24px}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <div class="brand">AXIOME SKOOL</div>
-  <h1>Mit Krypto bezahlen &amp; sparen</h1>
-  <p class="sub">Bezahle deinen Zugang direkt in Krypto und umgehe die Standard-Zahlung auf Skool.com</p>
-
-  <div class="prices">
-    <div class="price regular">
-      <div class="label">Regulärer Preis</div>
-      <div class="amount">$79</div>
-    </div>
-    <div class="price crypto">
-      <span class="badge">38% Rabatt</span>
-      <div class="label">Krypto-Preis</div>
-      <div class="amount">$49</div>
-    </div>
+<nav>
+  <div class="nav-inner">
+    <div class="logo">AXIOME <span>SKOOL</span></div>
+    <a href="/krypto.html" class="nav-cta">Mit Krypto bezahlen</a>
   </div>
-  <p class="discount-note">Du sparst $30 &mdash; das sind <b>37,97 %</b> Rabatt &#128293;</p>
+</nav>
 
-  <div class="card">
-    <h2>&#9889; So funktioniert's</h2>
-
-    <div class="step">
-      <div class="num">1</div>
-      <div class="bd">
-        Sende <b>$49 in USDT oder USDC</b> auf der <b>BNB Chain (BEP-20)</b> an folgende Wallet-Adresse:
-        <div class="wallet">
-          <div class="net">USDT / USDC &middot; BNB Chain (BEP-20)</div>
-          <div class="wallet-row">
-            <div class="addr" id="addr">0xc9E4720b55BFf7322bAC6E08bCE1FCae5e970A05</div>
-            <button class="copy" id="copyBtn" type="button">Kopieren</button>
+<header class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Krypto im Alltag bezahlen</span>
+        <h1>Bezahle weltweit mit <span class="grad">AXIOME PAY</span></h1>
+        <p>Die Krypto-Karte, die Guthaben in echtes Bezahlen verwandelt &ndash; online, offline und an jedem Terminal. AXIOME SKOOL zeigt dir, wie du sie und das gesamte Axiome &Ouml;kosystem optimal nutzt.</p>
+        <div class="cta-row">
+          <a href="/krypto.html" class="btn btn-primary">Jetzt starten &ndash; 38% Rabatt &rarr;</a>
+          <a href="#pay" class="btn btn-ghost">Wie AXIOME PAY funktioniert</a>
+        </div>
+      </div>
+      <div class="card-visual">
+        <div class="credit-card">
+          <div class="cc-top">
+            <div class="cc-brand">AXIOME PAY</div>
+            <div style="font-size:1.4rem">&#128179;</div>
           </div>
-          <div class="coins">
-            <span class="coin"><b>USDT</b> &middot; BEP-20</span>
-            <span class="coin"><b>USDC</b> &middot; BEP-20</span>
+          <div class="cc-chip"></div>
+          <div class="cc-num">5318&nbsp;&bull;&bull;&bull;&bull;&nbsp;&bull;&bull;&bull;&bull;&nbsp;0249</div>
+          <div class="cc-bot">
+            <div>
+              <div style="font-size:.62rem;letter-spacing:.1em">CRYPTO CARD</div>
+              <div style="color:#fff;font-weight:600">USDT BALANCE</div>
+            </div>
+            <div class="net">VISA</div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</header>
 
-    <div class="step">
-      <div class="num">2</div>
-      <div class="bd">Notiere dir nach der Zahlung deine <b>Transaktions-ID (TX-Hash)</b> &mdash; damit wir den Eingang zuordnen k&ouml;nnen.</div>
+<section id="pay">
+  <div class="container">
+    <div class="sec-head">
+      <div class="tag">AXIOME PAY</div>
+      <h2>Eine Karte. Dein gesamtes Krypto-Guthaben.</h2>
+      <p>Der erste Krypto-Karten-Aggregator mit der gr&ouml;&szlig;ten Auswahl am Markt &ndash; gebaut, damit du Krypto wirklich ausgeben kannst, nicht nur halten.</p>
     </div>
-
-    <div class="step">
-      <div class="num">3</div>
-      <div class="bd">Halte die <b>E-Mail-Adresse</b> bereit, mit der du bei <b>Skool.com</b> registriert bist. &Uuml;ber diese E-Mail erh&auml;ltst du deinen Zugang zur Community.</div>
-    </div>
-
-    <div class="step">
-      <div class="num">4</div>
-      <div class="bd">Trage <b>TX-Hash + Skool-E-Mail</b> unten ins Formular ein und sende es ab.</div>
+    <div class="pay-features">
+      <div class="pf">
+        <div class="ic">&#128179;</div>
+        <h3>Virtuell &amp; physisch</h3>
+        <p>Vom virtuellen Einstieg bis zur physischen Visa-Karte mit weltweiter Akzeptanz.</p>
+      </div>
+      <div class="pf">
+        <div class="ic">&#9889;</div>
+        <h3>Sofort in USDT laden</h3>
+        <p>Guthaben in Sekunden mit USDT aufladen &ndash; ohne Umwege &uuml;ber die Bank.</p>
+      </div>
+      <div class="pf">
+        <div class="ic">&#128241;</div>
+        <h3>Apple &amp; Google Pay</h3>
+        <p>Direkt in deinem Handy-Wallet hinterlegen und kontaktlos bezahlen.</p>
+      </div>
+      <div class="pf">
+        <div class="ic">&#127758;</div>
+        <h3>Weltweite Akzeptanz</h3>
+        <p>&Uuml;berall einsetzbar, wo Karten akzeptiert werden &ndash; ohne regionale Grenzen.</p>
+      </div>
+      <div class="pf">
+        <div class="ic">&#128640;</div>
+        <h3>Hohe Limits</h3>
+        <p>Hohe bis unbegrenzte Ausgabelimits &ndash; je nach Karte und Status.</p>
+      </div>
+      <div class="pf">
+        <div class="ic">&#127873;</div>
+        <h3>Bonuspunkte</h3>
+        <p>Sammle auf jeden ausgegebenen Dollar Punkte und wandle sie in AXM um.</p>
+      </div>
     </div>
   </div>
+</section>
 
-  <div class="card form-card">
-    <h2>&#128228; Zahlung melden</h2>
-    <form id="payForm">
-      <input type="hidden" name="access_key" value="c642d79f-c1e0-4a1e-9a01-4c27d6b374d4">
-      <input type="hidden" name="subject" value="Neue Krypto-Zahlung - AXIOME SKOOL">
-      <input type="hidden" name="from_name" value="AXIOME SKOOL Krypto-Seite">
-      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
-
-      <div class="field">
-        <label for="txhash">Transaktions-ID (TX-Hash)</label>
-        <input id="txhash" name="TX-Hash" type="text" placeholder="0x..." required>
+<section>
+  <div class="container">
+    <div class="pay-banner">
+      <div class="inner">
+        <h2>Krypto, das sich wie Bargeld anf&uuml;hlt</h2>
+        <p>AXIOME PAY schlie&szlig;t die L&uuml;cke zwischen deiner Wallet und der realen Welt. Aufladen, bezahlen, Bonus sammeln &ndash; ein durchg&auml;ngiger Kreislauf.</p>
+        <div class="cta-row" style="justify-content:center">
+          <a href="/krypto.html" class="btn btn-primary">Zugang sichern &ndash; mit Krypto &rarr;</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="n">USDT</div><div class="l">Sofort-Aufladung</div></div>
+          <div class="stat"><div class="n">Visa</div><div class="l">Physische Karte</div></div>
+          <div class="stat"><div class="n">100+</div><div class="l">L&auml;nder Akzeptanz</div></div>
+        </div>
       </div>
-      <div class="field">
-        <label for="email">Deine Skool.com E-Mail-Adresse</label>
-        <input id="email" name="Skool-Email" type="email" placeholder="name@email.com" required>
-      </div>
-      <div class="field">
-        <label for="coin">Bezahlt mit (USDT oder USDC)</label>
-        <input id="coin" name="Coin" type="text" placeholder="z. B. USDT" required>
-      </div>
-
-      <button class="submit" id="submitBtn" type="submit">Zahlung absenden</button>
-      <div class="form-msg" id="formMsg"></div>
-    </form>
+    </div>
   </div>
+</section>
 
-  <p class="note">
-    <span class="warn">&#9888; Wichtig:</span> Sende ausschlie&szlig;lich <b>USDT</b> oder <b>USDC</b> auf der <b>BNB Chain (BEP-20)</b>.
-    Zahlungen &uuml;ber andere Netzwerke oder Coins k&ouml;nnen nicht erstattet werden.
-    Der Zugang wird nach Best&auml;tigung der Transaktion manuell freigeschaltet.
-  </p>
+<section>
+  <div class="container">
+    <div class="eco-strip">
+      <div class="sec-head" style="margin-bottom:8px">
+        <div class="tag">Das &Ouml;kosystem dahinter</div>
+        <h2 style="font-size:1.7rem">Mehr als nur eine Karte</h2>
+      </div>
+      <p class="lead">AXIOME PAY ist Teil eines vollst&auml;ndigen DeFi-&Ouml;kosystems auf einer eigenen Layer-1-Blockchain. In AXIOME SKOOL lernst du alle Bausteine kennen.</p>
+      <div class="eco-row">
+        <div class="eco-item"><div class="ei">&#9939;&#65039;</div><h4>Axiome Chain</h4><p>Eigene Layer-1-Blockchain</p></div>
+        <div class="eco-item"><div class="ei">&#128176;</div><h4>AXM Staking</h4><p>Aus dem Community Pool verdienen</p></div>
+        <div class="eco-item"><div class="ei">&#128202;</div><h4>Axiome Trade</h4><p>Swap, Pump &amp; Futures</p></div>
+        <div class="eco-item"><div class="ei">&#128091;</div><h4>Axiome Wallet</h4><p>App f&uuml;r iOS &amp; Android</p></div>
+        <div class="eco-item"><div class="ei">&#129309;</div><h4>Community Pool</h4><p>Eink&uuml;nfte f&uuml;r Holder</p></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    AXIOME SKOOL<br>
+<section>
+  <div class="container">
+    <div class="benefits">
+      <div class="sec-head" style="margin-bottom:30px">
+        <div class="tag">Exklusiver Zugang</div>
+        <h2>Deine Vorteile beim Beitritt &uuml;ber unsere Community</h2>
+        <p>Wer der AXIOME SKOOL Community beitritt und seine Karte &uuml;ber unseren exklusiven Zugang erstellt, bekommt mehr als nur Wissen &ndash; sondern echte Konditionen und Bevorzugung von Anfang an.</p>
+      </div>
+      <div class="ben-grid">
+
+        <div class="ben">
+          <span class="free">Gratis</span>
+          <div class="bt"><span class="bi">&#129352;</span><h3>Silber Status kostenlos</h3></div>
+          <ul>
+            <li>Niedrigere Geb&uuml;hren</li>
+            <li>Bessere Konditionen</li>
+            <li>Direkter Vorteil beim Start</li>
+          </ul>
+        </div>
+
+        <div class="ben">
+          <div class="bt"><span class="bi">&#128640;</span><h3>Fast Track Karte</h3></div>
+          <ul>
+            <li>Schnellerer Bestellablauf</li>
+            <li>Schneller internationaler Versand</li>
+            <li>Komfortabler &amp; privater Zugang zur Physical Visa Ultimate</li>
+          </ul>
+        </div>
+
+        <div class="ben">
+          <div class="bt"><span class="bi">&#11088;</span><h3>VIP Support</h3></div>
+          <ul>
+            <li>Direkter Ansprechpartner</li>
+            <li>Bevorzugte Behandlung &ndash; nah an der Quelle</li>
+            <li>Kurze Wege, schnelle Hilfe</li>
+          </ul>
+        </div>
+
+        <div class="ben">
+          <div class="bt"><span class="bi">&#128218;</span><h3>Strukturierter Einstieg</h3></div>
+          <ul>
+            <li>Fast-Start-Anleitung Schritt f&uuml;r Schritt</li>
+            <li>Komplettes Axiome Pay Modul im Classroom</li>
+            <li>Karten, Aufladung, Geb&uuml;hren, Limits, Sicherheit &amp; mehr</li>
+          </ul>
+        </div>
+
+        <div class="ben">
+          <div class="bt"><span class="bi">&#127760;</span><h3>Das gesamte &Ouml;kosystem</h3></div>
+          <p>Axiome Pay ist erst der Anfang &ndash; die Community w&auml;chst Schritt f&uuml;r Schritt zum kompletten Axiome Ecosystem mit allen Modulen.</p>
+        </div>
+
+        <div class="ben">
+          <div class="bt"><span class="bi">&#129309;</span><h3>Echte Community</h3></div>
+          <p>Kein blo&szlig;er Link, sondern ein begleiteter Einstieg mit Anleitung, Support und Austausch &ndash; auch ganz ohne Vorkenntnisse.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="skool">
+      <div class="sec-head" style="margin-bottom:18px">
+        <div class="tag">AXIOME SKOOL Community</div>
+        <h2>Sichere dir jetzt deinen exklusiven Zugang</h2>
+        <p>Kaufe hier den Zugang zur exklusiven AXIOME SKOOL &ndash; lerne alles &uuml;ber AXIOME PAY und das &Ouml;kosystem und sichere dir alle Vorteile oben. Bezahle direkt in Krypto und spare.</p>
+      </div>
+      <div class="price-tag">
+        <span class="old">$79</span>
+        <span class="new">$49</span>
+        <span class="save">38% Rabatt</span>
+      </div>
+      <div class="cta-row" style="justify-content:center">
+        <a href="/krypto.html" class="btn btn-primary">Zugang mit Krypto kaufen &rarr;</a>
+        <a href="https://www.skool.com" target="_blank" rel="noopener" class="btn btn-ghost">Zur Skool-Community</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="fl">AXIOME SKOOL</div>
+    axiomeskool.com<br>
     Unabh&auml;ngiges Bildungsangebot &ndash; nicht offiziell unterst&uuml;tzt, autorisiert oder genehmigt.
-  </footer>
+  </div>
+</footer>
 
-</div>
-
-<script>
-var copyBtn=document.getElementById('copyBtn');
-copyBtn.addEventListener('click',function(){
-  var text=document.getElementById('addr').textContent.trim();
-  navigator.clipboard.writeText(text).then(function(){
-    copyBtn.textContent='Kopiert \u2713';copyBtn.classList.add('done');
-    setTimeout(function(){copyBtn.textContent='Kopieren';copyBtn.classList.remove('done');},1800);
-  });
-});
-
-var form=document.getElementById('payForm');
-var msg=document.getElementById('formMsg');
-var btn=document.getElementById('submitBtn');
-form.addEventListener('submit',async function(e){
-  e.preventDefault();
-  btn.disabled=true;btn.textContent='Wird gesendet...';
-  msg.className='form-msg';msg.textContent='';
-  try{
-    var data=new FormData(form);
-    var res=await fetch('https://api.web3forms.com/submit',{
-      method:'POST',
-      headers:{'Accept':'application/json'},
-      body:data
-    });
-    var json=await res.json();
-    if(json.success){
-      form.reset();
-      msg.className='form-msg ok';
-      msg.textContent='\u2705 Danke! Deine Zahlung wurde gemeldet. Dein Zugang wird nach Best\u00e4tigung freigeschaltet.';
-    }else{
-      msg.className='form-msg err';
-      msg.textContent='\u274C Etwas ist schiefgelaufen. Bitte versuche es erneut.';
-    }
-  }catch(err){
-    msg.className='form-msg err';
-    msg.textContent='\u274C Verbindungsfehler. Bitte versuche es erneut.';
-  }finally{
-    btn.disabled=false;btn.textContent='Zahlung absenden';
-  }
-});
-</script>
 </body>
 </html>

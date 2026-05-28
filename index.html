@@ -104,12 +104,16 @@ section{padding:64px 0}
 .ben-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:8px}
 .ben{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;position:relative;transition:.2s}
 .ben:hover{border-color:var(--line-blue);box-shadow:0 12px 34px rgba(23,98,255,.1);transform:translateY(-3px)}
-.ben .bt{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ben .bt{display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-right:74px}
 .ben .bi{font-size:1.4rem}
 .ben h3{font-size:1.05rem;font-weight:800}
 .ben .free{position:absolute;top:18px;right:18px;background:var(--blue);color:#fff;font-size:.62rem;font-weight:800;letter-spacing:.06em;padding:4px 9px;border-radius:999px}
+.ben .bdg{position:absolute;top:18px;right:18px;font-size:.62rem;font-weight:800;letter-spacing:.06em;padding:4px 9px;border-radius:999px}
+.ben .bdg.gold{background:linear-gradient(135deg,#f6c64b,#c8902a);color:#4a3500}
+.ben .bdg.mk{background:#fff;color:#0c1322;border:1px solid var(--line)}
 .ben ul{list-style:none;margin-top:6px}
 .ben li{display:flex;gap:9px;align-items:flex-start;font-size:.9rem;color:#2c3548;margin-bottom:6px}
+.ben li b{font-weight:800;color:#0c1322}
 .ben li::before{content:"\2713";color:var(--blue);font-weight:800;flex-shrink:0}
 .ben p{font-size:.9rem;color:var(--muted)}
 
@@ -296,15 +300,17 @@ footer a{color:var(--blue);text-decoration:none}
         </div>
 
         <div class="ben">
+          <span class="bdg gold">Exklusiv</span>
           <div class="bt"><span class="bi">&#128640;</span><h3>Fast Track Karte</h3></div>
           <ul>
             <li>Schnellerer Bestellablauf</li>
             <li>Schneller internationaler Versand</li>
-            <li>Komfortabler &amp; privater Zugang zur Physical Visa Ultimate</li>
+            <li>Komfortabler &amp; <b>privater Zugang</b> zur Physical Visa Ultimate &ndash; nur &uuml;ber unseren Einstieg</li>
           </ul>
         </div>
 
         <div class="ben">
+          <span class="bdg gold">Exklusiv</span>
           <div class="bt"><span class="bi">&#11088;</span><h3>VIP Support</h3></div>
           <ul>
             <li>Direkter Ansprechpartner</li>
@@ -314,6 +320,7 @@ footer a{color:var(--blue);text-decoration:none}
         </div>
 
         <div class="ben">
+          <span class="bdg mk">by MK</span>
           <div class="bt"><span class="bi">&#128218;</span><h3>Strukturierter Einstieg</h3></div>
           <ul>
             <li>Fast-Start-Anleitung Schritt f&uuml;r Schritt</li>
@@ -365,7 +372,7 @@ footer a{color:var(--blue);text-decoration:none}
       </div>
       <div class="cta-row" style="justify-content:center">
         <a href="/krypto.html" class="btn btn-primary">Zugang mit Krypto kaufen &rarr;</a>
-        <a href="https://www.skool.com" target="_blank" rel="noopener" class="btn btn-ghost">Zur Skool-Community</a>
+        <a href="https://www.skool.com/axiome" target="_blank" rel="noopener" class="btn btn-ghost">Zur Skool-Community</a>
       </div>
     </div>
   </div>

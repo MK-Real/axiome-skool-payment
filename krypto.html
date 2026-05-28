@@ -160,12 +160,12 @@ footer a{color:var(--blue);text-decoration:none}
       <div class="amount">$79</div>
     </div>
     <div class="price crypto">
-      <span class="badge">44% Rabatt</span>
+      <span class="badge" id="dyn-badge">44% Rabatt</span>
       <div class="label">Krypto-Preis</div>
-      <div class="amount">$44</div>
+      <div class="amount" id="dyn-price">$44</div>
     </div>
   </div>
-  <p class="discount-note">Du sparst $35 &mdash; das sind <b>44,30 %</b> Rabatt &#128293;</p>
+  <p class="discount-note" id="dyn-note">Du sparst $35 &mdash; das sind <b>44,30 %</b> Rabatt &#128293;</p>
 
   <div class="countdown" id="countdown">
     <div class="cd-label">&#9203; Angebot endet in &mdash; danach steigt der Preis</div>
@@ -187,7 +187,7 @@ footer a{color:var(--blue);text-decoration:none}
     <div class="step">
       <div class="num">1</div>
       <div class="bd">
-        Sende <b>$44 in USDT oder USDC</b> auf der <b>BNB Chain (BEP-20)</b> an folgende Wallet-Adresse:
+        Sende <b id="dyn-amount">$44 in USDT oder USDC</b> auf der <b>BNB Chain (BEP-20)</b> an folgende Wallet-Adresse:
         <div class="wallet">
           <div class="net">USDT / USDC &middot; BNB Chain (BEP-20)</div>
           <div class="wallet-row">
@@ -300,13 +300,58 @@ form.addEventListener('submit',async function(e){
 </script>
 <script>
 (function(){
-  var deadline=new Date("2026-05-31T23:59:59+02:00").getTime();
+  // === PREIS-PHASEN (deutsche Zeit, Sommerzeit +02:00) ===
+  // Jede Phase: Enddatum + zugehoeriger Preis/Rabatt. Die Seite waehlt automatisch
+  // die erste Phase, deren Enddatum noch nicht erreicht ist.
+  var phases=[
+    {end:"2026-05-31T23:59:59+02:00", price:44, save:35, pct:"44,30", badge:"44% Rabatt"},
+    {end:"2026-06-07T23:59:59+02:00", price:49, save:30, pct:"37,97", badge:"38% Rabatt"},
+    {end:"2026-06-30T23:59:59+02:00", price:59, save:20, pct:"25,32", badge:"25% Rabatt"},
+    {end:"2026-07-31T23:59:59+02:00", price:60, save:19, pct:"24,05", badge:"24% Rabatt"},
+    {end:"2026-08-31T23:59:59+02:00", price:69, save:10, pct:"12,66", badge:"13% Rabatt"},
+    {end:null,                        price:79, save:20, pct:"20,20", badge:"20% Rabatt", reg:99, noTimer:true}
+  ];
+  var REG=79;
+
   var el=document.getElementById('countdown');
   var d=document.getElementById('cd-d'),h=document.getElementById('cd-h'),
       m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
+  var bPrice=document.getElementById('dyn-price'),
+      bBadge=document.getElementById('dyn-badge'),
+      bNote=document.getElementById('dyn-note'),
+      bAmount=document.getElementById('dyn-amount');
+
   function pad(n){return n<10?'0'+n:''+n;}
+
+  // aktive Phase bestimmen
+  var now=Date.now(), active=null;
+  for(var i=0;i<phases.length;i++){
+    if(phases[i].end===null || new Date(phases[i].end).getTime()>now){active=phases[i];break;}
+  }
+  var ended=false;
+  if(!active){active=phases[phases.length-1];}
+
+  // Preise/Texte setzen
+  bPrice.textContent="$"+active.price;
+  bAmount.textContent="$"+active.price+" in USDT oder USDC";
+  bBadge.textContent=active.badge;
+  bNote.innerHTML="Du sparst $"+active.save+" &mdash; das sind <b>"+active.pct+" %</b> Rabatt &#128293;";
+
+  // Vergleichspreis (durchgestrichen) ggf. anpassen
+  if(active.reg){
+    var regAmt=document.querySelector('.price.regular .amount');
+    if(regAmt)regAmt.textContent="$"+active.reg;
+  }
+
+  // Countdown: nur ausblenden, wenn diese Phase keinen Timer hat
+  if(active.noTimer){
+    el.style.display="none";
+    ended=true;
+  }
+
+  var deadline=active.end?new Date(active.end).getTime():0;
   function tick(){
-    var now=Date.now(),diff=deadline-now;
+    var diff=deadline-Date.now();
     if(diff<=0){el.classList.add('expired');clearInterval(timer);return;}
     var days=Math.floor(diff/86400000);
     var hrs=Math.floor(diff%86400000/3600000);
@@ -314,7 +359,9 @@ form.addEventListener('submit',async function(e){
     var sec=Math.floor(diff%60000/1000);
     d.textContent=pad(days);h.textContent=pad(hrs);m.textContent=pad(min);s.textContent=pad(sec);
   }
-  tick();var timer=setInterval(tick,1000);
+  if(active.noTimer){ /* Countdown-Box ausgeblendet, kein Timer */ }
+  else if(ended){el.classList.add('expired');}
+  else{tick();var timer=setInterval(tick,1000);}
 })();
 </script>
 </body>

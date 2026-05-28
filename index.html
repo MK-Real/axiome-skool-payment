@@ -157,11 +157,11 @@ footer a{color:var(--blue);text-decoration:none}
         <h1>Bezahle weltweit mit <span class="grad">AXIOME PAY</span></h1>
         <p>Die Krypto-Karte, die Guthaben in echtes Bezahlen verwandelt &ndash; online, offline und an jedem Terminal. AXIOME SKOOL zeigt dir, wie du sie und das gesamte Axiome &Ouml;kosystem optimal nutzt.</p>
         <div class="cta-row">
-          <a href="/krypto.html" class="btn btn-primary">Jetzt starten &ndash; 44% Rabatt &rarr;</a>
+          <a href="/krypto.html" class="btn btn-primary" id="dyn-cta">Jetzt starten &ndash; 44% Rabatt &rarr;</a>
           <a href="#pay" class="btn btn-ghost">Wie AXIOME PAY funktioniert</a>
         </div>
         <div class="countdown" id="countdown-hero" style="margin-left:0;margin-right:auto">
-          <div class="cd-label">&#9203; Nur $44 &mdash; Angebot endet in</div>
+          <div class="cd-label" id="dyn-cd-hero-label">&#9203; Nur $44 &mdash; Angebot endet in</div>
           <div class="cd-timer">
             <div class="cd-box"><div class="n cd-d">00</div><div class="u">Tage</div></div>
             <div class="cd-sep">:</div>
@@ -347,8 +347,8 @@ footer a{color:var(--blue);text-decoration:none}
       </div>
       <div class="price-tag">
         <span class="old">$79</span>
-        <span class="new">$44</span>
-        <span class="save">44% Rabatt</span>
+        <span class="new" id="dyn-new">$44</span>
+        <span class="save" id="dyn-save">44% Rabatt</span>
       </div>
       <div class="countdown" id="countdown-skool" style="margin-top:0;margin-bottom:28px">
         <div class="cd-label">&#9203; Angebot endet in &mdash; danach steigt der Preis</div>
@@ -381,10 +381,52 @@ footer a{color:var(--blue);text-decoration:none}
 
 <script>
 (function(){
-  var deadline=new Date("2026-05-31T23:59:59+02:00").getTime();
+  // === PREIS-PHASEN (deutsche Zeit, Sommerzeit +02:00) ===
+  var phases=[
+    {end:"2026-05-31T23:59:59+02:00", price:44, badge:"44% Rabatt"},
+    {end:"2026-06-07T23:59:59+02:00", price:49, badge:"38% Rabatt"},
+    {end:"2026-06-30T23:59:59+02:00", price:59, badge:"25% Rabatt"},
+    {end:"2026-07-31T23:59:59+02:00", price:60, badge:"24% Rabatt"},
+    {end:"2026-08-31T23:59:59+02:00", price:69, badge:"13% Rabatt"},
+    {end:null,                        price:79, badge:"20% Rabatt", reg:99, noTimer:true}
+  ];
+
   var boxes=[document.getElementById('countdown-hero'),document.getElementById('countdown-skool')];
   function pad(n){return n<10?'0'+n:''+n;}
   function set(cls,val,box){var e=box.querySelector('.'+cls);if(e)e.textContent=val;}
+
+  // aktive Phase bestimmen
+  var now=Date.now(), active=null, ended=false;
+  for(var i=0;i<phases.length;i++){
+    if(phases[i].end===null || new Date(phases[i].end).getTime()>now){active=phases[i];break;}
+  }
+  if(!active){active=phases[phases.length-1];}
+
+  // dynamische Texte setzen
+  var elNew=document.getElementById('dyn-new');
+  var elSave=document.getElementById('dyn-save');
+  var elCta=document.getElementById('dyn-cta');
+  var elHeroLabel=document.getElementById('dyn-cd-hero-label');
+  if(elNew)elNew.textContent="$"+active.price;
+  if(elSave)elSave.textContent=active.badge;
+  if(elCta)elCta.innerHTML="Jetzt starten &ndash; "+active.badge+" &rarr;";
+
+  // Vergleichspreis (durchgestrichen) ggf. anpassen
+  if(active.reg){
+    var oldEl=document.querySelector('.price-tag .old');
+    if(oldEl)oldEl.textContent="$"+active.reg;
+  }
+
+  if(active.noTimer){
+    // Dauerhafter Sparpreis ohne Countdown: Timer ausblenden, Rabatt bleibt sichtbar
+    if(elHeroLabel)elHeroLabel.innerHTML="&#9203; Spar-Preis $"+active.price+" &mdash; nur mit Krypto";
+    boxes.forEach(function(b){if(b){var t=b.querySelector('.cd-timer');if(t)t.style.display="none";var m=b.querySelector('.cd-expired-msg');if(m)m.style.display="none";}});
+    ended=true;
+  } else {
+    if(elHeroLabel)elHeroLabel.innerHTML="&#9203; Nur $"+active.price+" &mdash; Angebot endet in";
+  }
+
+  var deadline=active.end?new Date(active.end).getTime():0;
   function tick(){
     var diff=deadline-Date.now();
     if(diff<=0){boxes.forEach(function(b){if(b)b.classList.add('expired');});clearInterval(timer);return;}
@@ -394,7 +436,9 @@ footer a{color:var(--blue);text-decoration:none}
     var sec=pad(Math.floor(diff%60000/1000));
     boxes.forEach(function(b){if(!b)return;set('cd-d',days,b);set('cd-h',hrs,b);set('cd-m',min,b);set('cd-s',sec,b);});
   }
-  tick();var timer=setInterval(tick,1000);
+  if(active.noTimer){ /* Timer bereits ausgeblendet, nichts weiter tun */ }
+  else if(ended){boxes.forEach(function(b){if(b)b.classList.add('expired');});}
+  else{tick();var timer=setInterval(tick,1000);}
 })();
 </script>
 </body>
